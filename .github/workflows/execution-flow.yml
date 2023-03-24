@@ -65,6 +65,6 @@ jobs:
     needs: build
     uses: ./.github/workflows/deploy-website.yml
     with: 
-      artifact-name: dist-files
+      artifact-file: dist-files
 
       
