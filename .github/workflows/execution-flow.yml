@@ -41,6 +41,10 @@ jobs:
           path: test.json
   build:
     needs: test
+    strategy:
+      matrix:
+        node-version: [12,14,16]
+        os: [ubuntu-latest,windows-latest]
     runs-on: ubuntu-latest
     steps:
       - name: Get code
