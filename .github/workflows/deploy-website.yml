@@ -1,0 +1,17 @@
+name: Deploy website
+on: 
+  workflow_call:
+    inputs:   
+      artifact-file:
+        description: The name of deployable artifact file
+        required: true
+        default: dist
+        type: string      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/download-artifact@v3
+        with: 
+          name: ${{ inputs.artifact-file }}
