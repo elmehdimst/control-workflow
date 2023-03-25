@@ -6,12 +6,21 @@ on:
         description: The name of deployable artifact file
         required: true
         default: dist
-        type: string      
+        type: string     
+    outputs:
+      result: 
+        description: The result of deployment
+        value: ${{ jobs.deploy.outputs.result }}
 jobs:
   deploy:
+    outputs: 
+      result: ${{ steps.test-report.outputs.state }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/download-artifact@v3
         with: 
           name: ${{ inputs.artifact-file }}
+      - name: Report state
+        id: test-report
+        run: echo "state=Success" >> $GITHUB_OUTPUT
