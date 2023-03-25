@@ -67,9 +67,10 @@ jobs:
     with: 
       artifact-file: dist-files
   print-deploy-result:
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print results
-        run: echo ${{ needs.deploy.outputs.result }}
+        run: echo "${{ needs.deploy.outputs.result }}"
 
       
